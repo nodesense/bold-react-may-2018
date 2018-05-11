@@ -1,0 +1,16 @@
+T0 - For cloning/for Immutable 
+      items = [item1, item2....item1000]
+      cloneItems = [...items]
+       [item1, item2....item1000, item1001]
+                 +
+
+    shouldComponentUpdate (compare)
+    ShallowCompare O(1)
+
+
+
+T1 - Creating Virtual DOM Objects
+T2 - Diffing Virtual DOMs
+T3- PATCH if any difference
+T4 - GC to clean unused objects
+
