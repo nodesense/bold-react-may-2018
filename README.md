@@ -10,9 +10,9 @@
 
 To start with repository,
 
-> git clone https://github.com/nodesense/react-workshop
+> git clone https://github.com/nodesense/bold-react-may-2018
 
-> cd react-workshop
+> cd bold-react-may-2018
 
 > npm install
 
