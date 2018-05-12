@@ -29,6 +29,7 @@ var config = {
 
   output: {
     path: BUILD_DIR,
+    
     filename: '[name].bundle.[hash].js',
     publicPath: '/', 
   },

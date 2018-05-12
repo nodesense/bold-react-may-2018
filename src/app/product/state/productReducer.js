@@ -21,7 +21,9 @@ export default
             }
 
             case ActionTypes.INIT_PRODUCTS: {
-                return Object.assign({}, state, {products: action.payload.products})
+                return Object.assign({}, state, {products: action.payload.products, 
+                                                 loading: false   
+                })
             }
  
             default:

@@ -23,7 +23,8 @@ describe ("cart Reducer test suite", () => {
 
 
     it("second test ", () => {
-        
+        expect(cartReducer([{id: 1}], actions.empty()))
+        .toEqual([]);
     })
 
 })

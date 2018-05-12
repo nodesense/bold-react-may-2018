@@ -33,12 +33,12 @@ export default class About extends Component {
         console.log("after ", this.state.show);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("current state", this.state);
-        console.log("next State ", nextState);
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("current state", this.state);
+    //     console.log("next State ", nextState);
 
-        return this.state.show != nextState.show; // calls render method
-    }
+    //     return this.state.show != nextState.show; // calls render method
+    // }
      
     
     render() {
@@ -48,11 +48,11 @@ export default class About extends Component {
             <h2>About</h2>
              {/* comment */}
 
-            <div onClick={this.toggle}>
+            {/* <div onClick={this.toggle}>
                 <button onClick={this.toggle}>
                     {this.state.show? "Hide": "Show"}
                 </button>    
-            </div>
+            </div> */}
 
             {
              this.state.show &&    

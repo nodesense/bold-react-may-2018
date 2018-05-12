@@ -1,3 +1,6 @@
+
+// console.log("VErsion ", VERSION);
+
 import React, {Component} from 'react';
 
 import Header from './containers/Header';
@@ -6,14 +9,40 @@ import Home from "./components/Home";
 import About from "./components/About";
 import NotFound from "./components/NotFound";
 
-import Cart from './cart/components/Cart';
-
-import ReduxCart from "./redux-cart/containers/Cart";
-
+//import Cart from './cart/components/Cart';
+//import ReduxCart from "./redux-cart/containers/Cart";
+//import ProductList from "./product/containers/ProductList";
 
 import { BrowserRouter as Router, 
          Route, 
          Switch } from 'react-router-dom';
+
+import Loadable from 'react-loadable';
+
+function Loading() {
+    return (
+        <div>
+            <img src="/assets/loading.gif" />
+        </div>
+    )
+}
+
+const CartLoadableComponent = Loadable({
+    loader: () => import('./cart/components/Cart'),
+    loading: Loading,
+  });
+
+  const ReduxCartLoadableComponent = Loadable({
+    loader: () => import('./redux-cart/containers/Cart'),
+    loading: Loading,
+  });
+
+  
+  const ProductListLoadableComponent = Loadable({
+    loader: () => import('./product/containers/ProductList'),
+    loading: Loading,
+  });
+
 
 export class App extends Component {
 
@@ -50,9 +79,20 @@ export class App extends Component {
                     
                 <Switch>
                 <Route path="/" exact component={Home} />
+
+                <Route path="/cart" component={CartLoadableComponent} />
+
+                <Route path="/products" component={ProductListLoadableComponent} />
+                <Route path="/redux-cart" component={ReduxCartLoadableComponent} />
+
+               {/*         
                 <Route path="/cart" component={Cart} />
+                <Route path="/products" component={ProductList} />
                 <Route path="/redux-cart" component={ReduxCart} />
+               */}
+  
                 <Route path="/about" component={About} />
+  
                 <Route path="*" component={NotFound} />
                </Switch>   
 

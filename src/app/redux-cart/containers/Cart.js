@@ -33,11 +33,11 @@ export function mapDispatchToProps(dispatch) {
     return {
         //propName: function() {}
         addItem: function () {
-            let id = Math.ceil(Math.random() * 10000);
+            let id = 100; // Math.ceil(Math.random() * 10000);
             let item = {
                 id,
                 name: `Product ${id}`,
-                price: Math.ceil(Math.random() * 100),
+                price: 100,
                 qty: 1
             }
 
@@ -55,7 +55,7 @@ export function mapDispatchToProps(dispatch) {
 
         //props.actions.empty
         // {empty: fun(), addItem: fun()}
-        actions: bindActionCreators(actions, dispatch)
+        //actions: bindActionCreators(actions, dispatch)
     }
 }
 

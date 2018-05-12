@@ -1,3 +1,5 @@
+console.log("OPTION ", process.argv);
+
 var webpack = require('webpack');
 var path = require('path');
 
@@ -29,7 +31,8 @@ var config = {
     publicPath: '/',
     filename: "app.bundle.js"
   },
- 
+
+  
   module : {
     loaders : [
       {
@@ -70,11 +73,11 @@ var config = {
 
   plugins: [
 
-  //   new webpack.DefinePlugin ({
-  //     VERSION: JSON.stringify("1.0.0"),
-  //     PRODUCTION: JSON.stringify("false"),
-  //     BASE_NAME: JSON.stringify(""),
-  //   }),
+    new webpack.DefinePlugin ({
+      VERSION: JSON.stringify("1.0.0"),
+      PRODUCTION: JSON.stringify("false"),
+      BASE_NAME: JSON.stringify(""),
+    }),
 
 
 

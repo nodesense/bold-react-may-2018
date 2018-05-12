@@ -2,6 +2,7 @@ import * as ActionTypes from "./action-types";
  
 import * as api from "./api";
 
+// returns object
 export function initProducts(products) {
     return {
         type: ActionTypes.INIT_PRODUCTS,
@@ -11,6 +12,7 @@ export function initProducts(products) {
     }
 }
 
+// returs action object
 export function loading (status) {
     return {
         type: ActionTypes.LOADING,
@@ -31,43 +33,20 @@ export function initError(error) {
 }
 
 
-// handling ajax/async in Redux
-// thunk as middleware
-// as per thunk design, 
-// return function as an action
-export function getProductsFromServer() {
-
-    console.log("get products action creator");
-
-    //dispatch and getState passed by thunk
+export function getProducts() {
     return function (dispatch, getState) {
-        // all async/ajax code here
-        console.log("called by thunk ");
-
-        // Cache the data
-        let state = getState();
-        if (state.product.products.length > 0) {
-            console.log("Data Already cached, no api calls");
-            return;
-        }
+        console.log("Called by thunk");
 
         dispatch(loading(true));
 
-        //clean old data
-       //dispatch(initProducts([]));
-
         api.getProducts()
-           .then ( products => {
-               console.log("Got products ", products);
-               
-               // Initialize products in store
-               dispatch(initProducts(products));
-               
-               dispatch(loading(false));
+        .then ( products => {
+            let action = initProducts(products);
+            dispatch(action);
 
-           })
+            dispatch(loading(false));
+        })
 
     }
-
-    
 }
+

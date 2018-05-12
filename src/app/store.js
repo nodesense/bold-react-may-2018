@@ -4,6 +4,12 @@ import {createStore,
 
 import cartReducer from './redux-cart/state/cartReducer';        
 
+import productReducer from "./product/state/productReducer";
+
+
+import thunk from 'redux-thunk';
+
+
 const INITIAL_STATE = 100;
 
 function counterReducer(state = INITIAL_STATE, action) {
@@ -26,7 +32,8 @@ function counterReducer(state = INITIAL_STATE, action) {
 let rootReducer = combineReducers({
     //stateName: reducerFn
     counter: counterReducer,
-     items: cartReducer
+     items: cartReducer,
+     product: productReducer
 })
 
 function loggerMiddleware(store) {
@@ -36,11 +43,17 @@ function loggerMiddleware(store) {
             // forward action to next middleare
             // forward to reducer
             console.log(" Logger Action ", action);
+            console.log("Loggger action type ", typeof action);
+
+            // if (typeof action == 'function') {
+            //     return action(store.dispatch, store.getState)
+            // }
+
             // PRE Reducer code
             let result = nextFn(action);
             // after nextFn, reducers, next available middlewares executed
             // POST Reducer code
-            if (action.type.indexOf('INCREMENT') >= 0) {
+            if (typeof action != 'function' && action.type.indexOf('INCREMENT') >= 0) {
                 let state = store.getState();
                 localStorage.setItem("Counter", state.counter)
             }
@@ -53,7 +66,7 @@ function loggerMiddleware(store) {
 
 
 const store = createStore(rootReducer, 
-                            applyMiddleware(loggerMiddleware));
+                            applyMiddleware(loggerMiddleware, thunk));
 // store.getState() => { counter: 100 }
 
 export default store;
