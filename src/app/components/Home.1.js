@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 
-import store from "../store";
-
 export default class Home extends Component {
     constructor(props) {
         super(props);
- 
+
+        //keyword, state, mutable
+        this.state = {
+            counter: 0
+        }
 
         //ES5 bind, create function once per comp inst
         this.decrement = this.decrement.bind(this);
@@ -13,58 +15,46 @@ export default class Home extends Component {
 
     increment() {
         console.log('incr called');
+        // BAD, mutating state directly, sync 
+        this.state.counter++;
 
-        // action creators , actions.js
-        function incrementAction(value) {
-            return {
-                type: 'INCREMENT',
-                payload: {
-                    value
-                }
-            }
-        }
-
-        let action = incrementAction(1)
-
-        // calls reducer
-        store.dispatch(action);
-
-        
-
-         
+        // BAD, trigger render to called
+        this.forceUpdate();
     }
 
     // with es5, bind, create one function per component inst
     decrement() {
         console.log('decr called');
-       
+        // BAD, mutating state directly, sync 
+        this.state.counter--;
+
+        // BAD, trigger render to called
+        this.forceUpdate();
     }
 
     // Create single function using ES.NEXT
     step2 = () => {
         console.log('step2 called');
-         
+        // BAD, mutating state directly, sync 
+        this.state.counter += 2;
+
+        // BAD, trigger render to called
+        this.forceUpdate();
     }
 
     componentDidMount() {
         console.log("Home mount")
-
-        this.unsubsribeFn = store.subscribe(() => {
-            console.log("Home Subsribe ", Math.random());
-            this.forceUpdate();
-        })
     }
 
     componentWillUnmount() {
         console.log("Home will unmount");
-        this.unsubsribeFn();
     }
 
     render() {
         console.log("Home render ");
         return (
             <div>
-                <p>Counter {store.getState().counter}</p>
+                <p>Counter {this.state.counter}</p>
                 
                 <button onClick={() => this.increment()}>
                   +1

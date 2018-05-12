@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // functional component, with deconstruct
-export default function Footer({company, year}) {
+export default function Footer({company, year, children}) {
     // props are immutable
     // error
     // props.company = 'Test App';
@@ -16,6 +16,8 @@ export default function Footer({company, year}) {
         <div>
             <hr />
             <p>Copyrights@ {company}, {year}  </p>
+
+            {children}
         </div>
     )
 }

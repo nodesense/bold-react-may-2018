@@ -3,7 +3,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-import CartList from "./CartList";
+import  CartList from "./CartList";
 import CartSummary from "./CartSummary";
 
 export default class Cart extends Component {
@@ -22,6 +22,7 @@ export default class Cart extends Component {
     componentWillMount() {
         console.log("Cart Will mount");
         this.recalculate(this.state.items);
+ 
     }
     
     addItem = () => {
@@ -131,6 +132,10 @@ export default class Cart extends Component {
 
             <button onClick={this.refresh}>
                 Refresh
+            </button>
+
+            <button onClick={() => this.props.history.push("/")}>
+                Home
             </button>
             
             {/* todo */}

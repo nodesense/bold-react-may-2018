@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 
 import CartItem from "./CartItem";
 
-export default class CartList extends Component {
+import {withRouter} from 'react-router-dom';
+
+class CartList extends Component {
     constructor(props) {
         super(props);
     }
@@ -22,6 +24,11 @@ export default class CartList extends Component {
         return (
             <div> 
             <h2>Cart List</h2>
+            
+            <button onClick={() => this.props.history.push("/")}>
+                Home
+            </button>
+
             <table>
                 <thead>
                     <tr>
@@ -61,3 +68,8 @@ CartList.defaultProps = {
 CartList.propTypes = {
     
 }
+
+
+// export container componetn that wraps CartList
+export default withRouter(CartList);
+
